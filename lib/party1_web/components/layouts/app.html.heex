@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+  <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}></script>
+</head>
+
+<body class="min-h-screen bg-gray-50">
+
+  <div class="flex min-h-screen">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="w-64 bg-white border-r border-zinc-200">
+      <.sidebar />
+    </aside>
+
+    <!-- RIGHT MAIN SECTION -->
+    <div class="flex flex-col flex-1">
+
+      <!-- NAVBAR -->
+      <.navbar current_user={@current_user} />
+
+      <!-- PAGE CONTENT -->
+      <main class="flex-1 p-4">
+        <div>
+          <.flash_group flash={@flash} />
+          <%= @inner_content %>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <.footer />
+    </div>
+
+  </div>
+
+</body>
+</html>

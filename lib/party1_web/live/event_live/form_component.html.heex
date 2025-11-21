@@ -1,0 +1,49 @@
+<div>
+  <.header>
+    {@title}
+    <:subtitle>Use this form to manage event records in your database.</:subtitle>
+  </.header>
+
+  <.simple_form
+    for={@form}
+    id="event-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save"
+  >
+    <.input field={@form[:title]} type="text" label="Title" />
+    <.input field={@form[:description]} type="text" label="description" />
+    <.input field={@form[:start_date]} type="date" label="start_date" />
+    <.input field={@form[:end_date]} type="date" label="end_date" />
+    <.input field={@form[:location]} type="text" label="location" />
+    <.input field={@form[:price]} type="text" label="price" />
+    <.input field={@form[:capacity]} type="text" label="capacity" />
+    <.input field={@form[:number_of_attendees]} type="text" label="number_of_attendees" />
+    
+    <div class="mt-4">
+      <label class="block text-sm font-medium mb-2">Upload Image</label>
+      <.live_file_input upload={@uploads.image} />
+
+      <%= for entry <- @uploads.image.entries do %>
+        <div class="mt-2">
+          <progress value={entry.progress} max="100">
+            <%= entry.progress %>%
+          </progress>
+
+          <p class="text-sm text-gray-600 mt-1">
+            File: <%= entry.client_name %> (<%= entry.client_type %>)
+          </p>
+
+          <!-- Simple error display without complex logic -->
+          <%= if upload_errors(@uploads.image, entry) != [] do %>
+            <p class="text-red-500 text-sm mt-1">Please check the file type and size</p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <:actions>
+      <.button phx-disable-with="Saving...">Save Event</.button>
+    </:actions>
+  </.simple_form>
+</div>

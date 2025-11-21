@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Cards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 2rem;
+            color: #333;
+        }
+        
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .event-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .event-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .event-card:hover::after {
+            box-shadow: inset 0 0 0 2px #3498db;
+        }
+        
+        .event-card h2 {
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+            font-size: 1.4rem;
+            line-height: 1.3;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .event-card p {
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+            color: #555;
+        }
+        
+        .event-card p:last-of-type {
+            margin-bottom: 1.25rem;
+        }
+        
+        .event-card strong {
+            color: #2c3e50;
+        }
+        
+        form {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px dashed #e0e0e0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            position: relative;
+            z-index: 3;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .book-btn {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .book-btn:hover:not(:disabled) {
+            background-color: #2980b9;
+        }
+        
+        .book-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        .sold-out {
+            background-color: #e74c3c;
+        }
+        
+        .sold-out:hover {
+            background-color: #c0392b;
+        }
+        
+        .capacity-low {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        /* Prevent form elements from triggering card click */
+        form, form * {
+            pointer-events: none;
+        }
+        
+        .book-btn, input[type="number"] {
+            pointer-events: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .events-list {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%!-- <Layouts.sidebar /> --%>
+    <div class="events-list">
+        <%= for event <- @events do %>
+           <%= if Date.compare(event.end_date, @now) in [:gt, :eq] do %>
+
+          <div class="event-card" phx-click={JS.navigate(~p"/party/#{event.id}")}>
+            <%= if event.image_url do %>
+            <img src={event.image_url} alt={"Image for #{event.title}"} class="w-full h-64 object-cover rounded-lg shadow-sm" />
+            <% end %>
+            <h2><%= event.title %></h2>
+            <p><%= event.description %></p>
+            <p><strong>Start Date:</strong> <%= event.start_date %></p>
+            <p><strong>End Date:</strong> <%= event.end_date %></p>
+            <p><strong>Location:</strong> <%= event.location %></p>
+            <p><strong>Tickets Available:</strong> 
+              <%= if event.capacity <= 5 do %>
+                <span class="capacity-low"> <%= event.capacity %> spots left!</span>
+              <% else %>
+                <%= event.capacity %>
+              <% end %>
+            </p>
+
+           
+          </div>
+        <% end %>
+        <% end %>
+    </div> 
+</body>
+</html>

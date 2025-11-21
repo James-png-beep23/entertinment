@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub - Book Your Next Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .event-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .category-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <%!-- <Party1Web.Navbar.navbar current_user={@current_user} /> --%>
+
+
+    <!-- Hero Section -->
+    <div class="bg-gray-50 py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
+                        Discover & Book <span class="text-indigo-600">Amazing Events</span> Near You
+                    </h1>
+                    <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+                        From concerts and conferences to workshops and meetups, find the perfect event for your interests. Book tickets in seconds with our seamless platform.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                        <div class="relative flex-grow">
+                            <input 
+                                type="text" 
+                                placeholder="Search events, categories, or locations..." 
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent shadow-sm"
+                            >
+                            <button class="absolute right-2 top-2 p-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <button class="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 whitespace-nowrap shadow-md">
+                            Browse All Events
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap items-center text-sm text-gray-500 gap-4">
+                        <span><i class="fas fa-check-circle text-green-500 mr-1"></i> Secure checkout</span>
+                        <span><i class="fas fa-check-circle text-green-500 mr-1"></i> Instant confirmation</span>
+                        <span><i class="fas fa-check-circle text-green-500 mr-1"></i> Best price guarantee</span>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 event-card">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                                 alt="Concert event" 
+                                 class="w-full h-48 object-cover rounded-xl">
+                            <div class="category-tag bg-red-500">
+                                Selling Fast
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-bold text-gray-900">Summer Music Festival 2023</h3>
+                            <div class="flex items-center mt-2 text-gray-600">
+                                <i class="far fa-calendar-alt mr-2"></i>
+                                <span>Sat, Aug 26 • 7:00 PM</span>
+                            </div>
+                            <div class="flex items-center mt-1 text-gray-600">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Central Park, New York</span>
+                            </div>
+                            <div class="flex justify-between items-center mt-4">
+                                <div class="text-2xl font-bold text-indigo-600">$49<span class="text-sm font-normal text-gray-500">/person</span></div>
+                                <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Events Section -->
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Featured Events</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    Handpicked events that you don't want to miss. From local gatherings to international conferences.
+                </p>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Event Card 1 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden event-card">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" 
+                             alt="Tech Conference" 
+                             class="w-full h-48 object-cover">
+                        <div class="category-tag bg-indigo-600">
+                            Tech
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Future Tech Summit 2023</h3>
+                        <div class="flex items-center mt-2 text-gray-600">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            <span>Fri, Sep 15 • 9:00 AM</span>
+                        </div>
+                        <div class="flex items-center mt-1 text-gray-600">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Convention Center, San Francisco</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-6">
+                            <div class="text-2xl font-bold text-indigo-600">$129</div>
+                            <button class="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 2 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden event-card">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" 
+                             alt="Art Exhibition" 
+                             class="w-full h-48 object-cover">
+                        <div class="category-tag bg-pink-500">
+                            Art
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Modern Art Exhibition</h3>
+                        <div class="flex items-center mt-2 text-gray-600">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            <span>Sun, Aug 20 • 10:00 AM</span>
+                        </div>
+                        <div class="flex items-center mt-1 text-gray-600">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Metropolitan Museum, Chicago</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-6">
+                            <div class="text-2xl font-bold text-indigo-600">$25</div>
+                            <button class="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 3 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden event-card">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1165&q=80" 
+                             alt="Food Festival" 
+                             class="w-full h-48 object-cover">
+                        <div class="category-tag bg-amber-500">
+                            Food
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">International Food Festival</h3>
+                        <div class="flex items-center mt-2 text-gray-600">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            <span>Sat, Sep 2 • 12:00 PM</span>
+                        </div>
+                        <div class="flex items-center mt-1 text-gray-600">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Waterfront Park, Seattle</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-6">
+                            <div class="text-2xl font-bold text-indigo-600">$15</div>
+                            <button class="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+         <div class="text-center mt-12">
+                <.link 
+                  href={~p"/party"} 
+                  class="px-6 py-3 bg-white text-indigo-600 font-medium rounded-lg border border-indigo-600 hover:bg-indigo-50 transition-colors shadow-sm inline-block"
+                >
+                  View All Events
+                </.link>
+              </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">How It Works</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    Booking your next event experience is simple with our easy-to-use platform.
+                </p>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-search text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">1. Discover Events</h3>
+                    <p class="text-gray-600">
+                        Browse thousands of events by category, location, or date. Find exactly what you're looking for.
+                    </p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-ticket-alt text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">2. Book Tickets</h3>
+                    <p class="text-gray-600">
+                        Select your tickets and complete your booking in just a few clicks. No hassle, no waiting.
+                    </p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-calendar-check text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">3. Enjoy the Event</h3>
+                    <p class="text-gray-600">
+                        Receive your e-ticket instantly. Show it at the venue and enjoy your experience!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-16 bg-indigo-700 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold">Ready to Find Your Next Experience?</h2>
+            <p class="mt-4 text-lg max-w-2xl mx-auto">
+                Join thousands of event-goers who have discovered amazing experiences through EventHub.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                <button class="px-6 py-3 bg-white text-indigo-700 font-medium rounded-lg hover:bg-gray-100 transition-colors shadow-sm">
+                    Create an Account
+                </button>
+                <button class="px-6 py-3 bg-transparent border border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors">
+                    Browse Events
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center">
+                        <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold">EB</div>
+                        <span class="ml-2 text-xl font-bold">EventHub</span>
+                    </div>
+                    <p class="mt-4 text-gray-400">
+                        Your gateway to amazing events and experiences.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Explore</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">All Events</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Popular Events</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">New Events</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Categories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2023 EventHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for demo purposes
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality placeholder
+            const searchButton = document.querySelector('button.bg-indigo-600');
+            searchButton.addEventListener('click', function() {
+                const searchInput = document.querySelector('input[type="text"]');
+                if (searchInput.value.trim() !== '') {
+                    alert(`Searching for: ${searchInput.value}`);
+                } else {
+                    alert('Please enter a search term');
+                }
+            });
+            
+            // Add click handlers to all "Details" buttons
+            const detailButtons = document.querySelectorAll('button.border-indigo-600');
+            detailButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const eventTitle = this.closest('.event-card').querySelector('h3').textContent;
+                    alert(`Showing details for: ${eventTitle}`);
+                });
+            });
+            
+            // Add click handlers to "Book Now" buttons
+            const bookButtons = document.querySelectorAll('button.bg-indigo-600:not(.absolute)');
+            bookButtons.forEach(button => {
+                if (button.textContent.trim() === 'Book Now') {
+                    button.addEventListener('click', function() {
+                        const eventTitle = this.closest('.event-card').querySelector('h3').textContent;
+                        alert(`Starting booking process for: ${eventTitle}`);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

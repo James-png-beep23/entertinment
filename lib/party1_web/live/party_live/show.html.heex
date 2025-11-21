@@ -1,0 +1,86 @@
+<.header>
+  Event {@event.id}
+</.header>
+
+
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+
+
+  <div class="lg:col-span-2">
+
+<%= if @event.image_url do %>
+  <img src={@event.image_url} alt={"Image for #{@event.title}"} class="w-full h-64 object-cover rounded-lg shadow-sm" />
+<% end %>
+
+    <.list>
+      <:item title="Title">{@event.title}</:item>
+      <:item title="Description">{@event.description}</:item>
+      <:item title="Start Date">{@event.start_date}</:item>
+      <:item title="End date">{@event.end_date}</:item>
+      <:item title="Location">{@event.location}</:item>
+      <:item title="Price">{@event.price}</:item>
+    </.list>
+  </div>
+
+
+
+  <div class="border rounded-lg p-5 bg-white shadow-sm">
+
+    <h3 class="text-lg font-semibold mb-4">Book This Event</h3>
+
+    <%= if @event.capacity != 0 do %>
+
+  
+
+    <p><strong>Tickets Available:</strong> 
+     <span class="capacity-low"> <%= @event.capacity %></span> </p>
+      
+      <form phx-change="get_price" phx-submit="book">
+
+        <p class="mt-2 text-gray-700">
+            <strong>Total Cost:</strong>
+            <%= @price || 0 %>
+            </p>
+
+        <input type="hidden" name="event_id" value={@event.id} />
+
+        <label class="block text-sm font-medium mb-1">
+          Number of attendees
+        </label>
+
+        <input
+          type="number"
+          name="number_of_attendees"
+          min="1"
+          max={@event.capacity}
+          required
+          class="w-full border rounded p-2 mb-4"
+          phx-debounce="150"
+        />
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded"
+        >
+          Book Now
+        </button>
+
+      </form>
+    <% else %>
+
+      <button
+        disabled
+        class="w-full bg-gray-400 text-white py-2 rounded cursor-not-allowed"
+      >
+        Sold Out
+      </button>
+
+    <% end %>
+
+  </div>
+
+</div>
+
+
+<.back navigate={~p"/party"}>Back to events</.back>
